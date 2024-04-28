@@ -12,8 +12,6 @@ def convert_md_to_html(input_file, output_file):
         input_file (str): Path to the input Markdown file.
         output_file (str): Path to the output HTML file.
 
-    Raises:
-        FileNotFoundError: If the Markdown file doesn't exist.
     """
     if len(sys.argv) != 3:
         print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
