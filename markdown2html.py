@@ -1,6 +1,8 @@
 #!/usr/bin/python3
+"""markdown converter to html"""
 import sys
 import os
+
 
 if len(sys.argv) < 3:
     sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
