@@ -1,28 +1,17 @@
-#!/usr/bin/env python3
-"""markdown to html converter"""
 import sys
-import os.path
 
+if len(sys.argv) < 3:
+    sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
+    sys.exit(1)
 
-def main():
-    """
-    Check the command-line arguments and exit if they are insufficient or if the Markdown file is missing.
+markdown_text = sys.argv[1]
+output_file = sys.argv[2]
 
-    The function checks if the number of command-line arguments is less than 3.
-    If so, it prints usage information to standard error and exits with a non-zero status to indicate an error.
-    It then stores the first command-line argument as the Markdown file path and checks if the file exists.
-    If the Markdown file does not exist, it prints an error message indicating the
-    missing file and exits with a non-zero status.
-    If all checks pass, it exits with a zero status to indicate successful execution.
-    """
-    if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py <Markdown file> <Output file>", file=sys.stderr)
-        exit(1)
+try:
+    with open(output_file, 'w') as f:
+        pass
+except FileNotFoundError:
+    sys.stderr.write(f"Missing {markdown_text}\n")
+    sys.exit(1)
 
-    markdown_file = sys.argv[1]
-
-    if not os.path.exists(markdown_file):
-        print(f"Missing {markdown_file}", file=sys.stderr)
-        exit(1)
-
-    exit(0)
+sys.exit(0)
