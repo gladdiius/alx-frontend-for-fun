@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-"""markdown"""
+"""markdown2html"""
 import sys
-
+import os
 
 
 def convert_md_to_html(input_file, output_file):
@@ -13,18 +13,20 @@ def convert_md_to_html(input_file, output_file):
         output_file (str): Path to the output HTML file.
 
     Raises:
-        ValueError: If the number of command-line arguments is not 3.
-        ValueError: If the input file does not have a .md extension.
+        FileNotFoundError: If the Markdown file doesn't exist.
     """
     if len(sys.argv) != 3:
         print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
         sys.exit(1)
 
-    if not input_file.endswith(".md"):
-        print('Missing <filename>', file=sys.stderr)
+    try:
+        if not os.path.exists(input_file):
+            raise FileNotFoundError(f"Missing {input_file}")
+    except FileNotFoundError as e:
+        print(e, file=sys.stderr)
         sys.exit(1)
 
-    sys.exit(0)
-
 if __name__ == "__main__":
-    convert_md_to_html(*sys.argv[1:])
+    input_file, output_file = sys.argv[1], sys.argv[2]
+    convert_md_to_html(input_file, output_file)
+    sys.exit(0)
