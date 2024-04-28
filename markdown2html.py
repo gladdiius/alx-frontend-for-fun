@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """markdown2html"""
 import sys
+import os
 
 
 def convert_md_to_html():
