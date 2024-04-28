@@ -12,7 +12,4 @@ if not os.path.exists(markdown_file):
     sys.stderr.write(f"Missing {markdown_file}\n")
     sys.exit(1)
 
-# If the Markdown file exists, you could proceed with conversion
-# but for simplicity, let's just exit 0 for now.
-
 sys.exit(0)
