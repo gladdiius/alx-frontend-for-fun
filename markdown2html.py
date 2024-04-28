@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-
+"""markdown to html converter"""
 import sys
 import os.path
+
 
 def main():
     """
@@ -19,6 +20,7 @@ def main():
         sys.exit(1)
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
