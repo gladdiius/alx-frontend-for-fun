@@ -3,22 +3,22 @@ import sys
 """MARKDOWN CONVERTER"""
 
 
-def convert_markdown_to_html(markdown_text, output_file):
+def convert_markdown_to_html(markdown, output):
     """
     Convert Markdown content to HTML and write it to the output file.
 
     Args:
-        markdown_text (str): The Markdown content to convert.
-        output_file (str): The name of the output HTML file.
+        markdown (str): The Markdown content to convert.
+        output (str): The name of the output HTML file.
 
     Returns:
         None
     """
     try:
-        with open(output_file, 'w') as f:
-            f.write(f'<html><body>{markdown_text}</body></html>')
+        with open(output, 'w') as f:
+            f.write(f'<html><body>{markdown}</body></html>')
     except FileNotFoundError:
-        sys.stderr.write(f"Missing {markdown_text}\n")
+        sys.stderr.write(f"Missing {markdown}\n")
         exit(1)
 
 
