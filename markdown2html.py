@@ -21,7 +21,7 @@ def markdownToHtml():
     markdown_file = sys.argv[1]
 
     if not os.path.exists(markdown_file):
-        print(f"Missing {markdown_file}\n",file = sys.stderr)
+        print(f"Missing {markdown_file}\n", file = sys.stderr)
         exit(1)
 
     exit(0)
