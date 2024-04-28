@@ -1,0 +1,1 @@
+this folder contains all the solutions for alx-frontend-for-fun project
