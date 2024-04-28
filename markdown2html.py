@@ -21,7 +21,7 @@ def convert_md_to_html(input_file, output_file):
         sys.exit(1)
 
     if not input_file.endswith(".md"):
-        print("Input file must have a .md extension", file=sys.stderr)
+        print('Missing <filename>', file=sys.stderr)
         sys.exit(1)
 
     sys.exit(0)
