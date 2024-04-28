@@ -3,6 +3,7 @@
 import sys
 import os
 
+
 def markdownToHtml():
     """Converts Markdown file to HTML.
 
