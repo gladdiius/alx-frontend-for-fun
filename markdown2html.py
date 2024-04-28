@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""markdown to html converter"""
 import sys
 import os.path
 
