@@ -1,31 +1,18 @@
-#!/usr/bin/python3
-"""markdownhtml"""
 import sys
 import os
 
+if len(sys.argv) < 3:
+    sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
+    sys.exit(1)
 
-def convert_markdown_to_html(markdown_file, output_file):
-    """Converts Markdown file to HTML.
+markdown_file = sys.argv[1]
+output_file = sys.argv[2]
 
-    Args:
-        markdown_file (str): The path to the Markdown file.
-        output_file (str): The path to the output HTML file.
+if not os.path.exists(markdown_file):
+    sys.stderr.write(f"Missing {markdown_file}\n")
+    sys.exit(1)
 
-    Returns:
-        int: Exit code. 0 if successful, 1 if Markdown file is missing.
-    """
-    if not os.path.exists(markdown_file):
-        sys.stderr.write(f"Missing {markdown_file}\n")
-        return 1
-    return 0
+# If the Markdown file exists, you could proceed with conversion
+# but for simplicity, let's just exit 0 for now.
 
-if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
-        sys.exit(1)
-
-    markdown_file = sys.argv[1]
-    output_file = sys.argv[2]
-
-    exit_code = convert_markdown_to_html(markdown_file, output_file)
-    sys.exit(exit_code)
+sys.exit(0)
