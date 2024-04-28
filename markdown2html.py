@@ -5,9 +5,6 @@ import os.path
 
 
 def main():
-    """
-    Main function to check arguments and file existence.
-    """
     if len(sys.argv) < 3:
         print("Usage: ./markdown2html.py <Markdown file> <Output file>", file=sys.stderr)
         sys.exit(1)
