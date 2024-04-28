@@ -15,13 +15,13 @@ def markdownToHtml():
         int: Exit code. 0 if successful, 1 if Markdown file is missing.
     """
     if len(sys.argv) < 3:
-        sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
+        print("Usage: ./markdown2html.py README.md README.html\n", file = sys.stderr)
         exit(1)
 
     markdown_file = sys.argv[1]
 
     if not os.path.exists(markdown_file):
-        sys.stderr.write(f"Missing {markdown_file}\n")
+        print(f"Missing {markdown_file}\n",file = sys.stderr)
         exit(1)
 
     exit(0)
