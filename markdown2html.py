@@ -1,33 +1,38 @@
 #!/usr/bin/python3
-""" markdown"""
+"""markdown"""
 import sys
-import markdown
 
 
-def convert_markdown_to_html(input_file, output_file):
+def convert_markdown_to_html(markdown_text):
     """
-    Convert a Markdown file to HTML.
+    Convert Markdown text to HTML.
 
     Args:
-        input_file (str): The path to the input Markdown file.
-        output_file (str): The path to the output HTML file.
+        markdown_text (str): The Markdown text to convert.
 
     Returns:
-        None
+        str: The HTML content converted from Markdown.
     """
-    try:
-        with open(input_file, 'r') as f:
-            markdown_text = f.read()
-    except FileNotFoundError:
-        print(f"Missing {input_file}", file=sys.stderr)
-        sys.exit(1)
+    # Simple Markdown to HTML conversion
+    html_content = ""
+    in_list = False
+    for line in markdown_text.split('\n'):
+        if line.startswith('* '):
+            if not in_list:
+                html_content += "<ul>"
+                in_list = True
+            html_content += f"<li>{line[2:]}</li>"
+        elif in_list:
+            html_content += "</ul>"
+            in_list = False
+        else:
+            html_content += f"<p>{line}</p>"
+    if in_list:
+        html_content += "</ul>"
 
-    html_content = markdown.markdown(markdown_text)
+    return html_content
 
-    with open(output_file, 'w') as f:
-        f.write(html_content)
-
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 3:
         print("Usage: ./markdown2html.py <input_file.md> <output_file.html>", file=sys.stderr)
         sys.exit(1)
@@ -35,4 +40,17 @@ if __name__ == "__main__":
     input_file = sys.argv[1]
     output_file = sys.argv[2]
 
-    convert_markdown_to_html(input_file, output_file)
+    try:
+        with open(input_file, 'r') as f:
+            markdown_text = f.read()
+    except FileNotFoundError:
+        print(f"Missing {input_file}", file=sys.stderr)
+        sys.exit(1)
+
+    html_content = convert_markdown_to_html(markdown_text)
+
+    with open(output_file, 'w') as f:
+        f.write(html_content)
+
+if __name__ == "__main__":
+    main()
