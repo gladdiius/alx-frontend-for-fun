@@ -1,7 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ markdown """
 import sys
-
 
 def convert_markdown_to_html(markdown_text):
     """
@@ -40,6 +39,12 @@ def convert_markdown_to_html(markdown_text):
                 html_content += "<ul>\n"
                 in_unordered_list = True
             html_content += f"    <li>{line.strip('- ').strip()}</li>\n"
+        elif line.startswith('#'):
+            if in_paragraph:
+                html_content += "</p>\n"
+                in_paragraph = False
+            heading_level = min(line.count('#'), 6)  # Limit heading level to h6
+            html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>\n"
         else:
             if in_paragraph:
                 html_content += f"    {line}\n"
@@ -56,6 +61,10 @@ def convert_markdown_to_html(markdown_text):
 
     if in_paragraph:
         html_content += "</p>\n"
+    if in_ordered_list:
+        html_content += "</ol>\n"
+    if in_unordered_list:
+        html_content += "</ul>\n"
 
     return html_content
 
