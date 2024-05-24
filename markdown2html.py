@@ -1,7 +1,5 @@
-#!/usr/bin/python3
-"""markdown"""
+#!/usr/bin/env python3
 import sys
-
 
 def convert_markdown_to_html(markdown_text):
     """
@@ -13,22 +11,18 @@ def convert_markdown_to_html(markdown_text):
     Returns:
         str: The HTML content converted from Markdown.
     """
-    # Simple Markdown to HTML conversion
     html_content = ""
-    in_list = False
+    in_heading = False
     for line in markdown_text.split('\n'):
-        if line.startswith('* '):
-            if not in_list:
-                html_content += "<ul>"
-                in_list = True
-            html_content += f"<li>{line[2:]}</li>"
-        elif in_list:
-            html_content += "</ul>"
-            in_list = False
+        if line.startswith('#'):
+            heading_level = line.count('#')
+            html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>"
+            in_heading = True
         else:
+            if in_heading:
+                html_content += "\n"
             html_content += f"<p>{line}</p>"
-    if in_list:
-        html_content += "</ul>"
+            in_heading = False
 
     return html_content
 
