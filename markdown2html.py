@@ -1,7 +1,5 @@
-#!/usr/bin/python3
-"""markdown"""
+#!/usr/bin/env python3
 import sys
-
 
 def convert_markdown_to_html(markdown_text):
     """
@@ -17,8 +15,11 @@ def convert_markdown_to_html(markdown_text):
     in_heading = False
     for line in markdown_text.split('\n'):
         if line.startswith('#'):
-            heading_level = line.count('#')
-            html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>"
+            heading_level = 1
+            while line.startswith('#'):
+                heading_level += 1
+                line = line[1:]
+            html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>\n"
             in_heading = True
         else:
             if in_heading:
@@ -30,7 +31,7 @@ def convert_markdown_to_html(markdown_text):
 
 def main():
     if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
+        print("Usage: ./markdown2html.py <input_file.md> <output_file.html>", file=sys.stderr)
         sys.exit(1)
 
     input_file = sys.argv[1]
