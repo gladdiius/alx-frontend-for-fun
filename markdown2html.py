@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 import sys
 
 def convert_markdown_to_html(markdown_text):
@@ -12,20 +12,12 @@ def convert_markdown_to_html(markdown_text):
         str: The HTML content converted from Markdown.
     """
     html_content = ""
-    in_heading = False
     for line in markdown_text.split('\n'):
         if line.startswith('#'):
-            heading_level = 1
-            while line.startswith('#'):
-                heading_level += 1
-                line = line[1:]
+            heading_level = min(line.count('#'), 6)  # Limit heading level to h6
             html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>\n"
-            in_heading = True
         else:
-            if in_heading:
-                html_content += "\n"
-            html_content += f"<p>{line}</p>"
-            in_heading = False
+            html_content += f"<p>{line}</p>\n"
 
     return html_content
 
