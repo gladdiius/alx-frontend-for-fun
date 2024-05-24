@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""3"""
+""" markdown """
 import sys
 
 
@@ -16,8 +16,12 @@ def convert_markdown_to_html(markdown_text):
     html_content = ""
     in_ordered_list = False
     in_unordered_list = False
+    in_paragraph = False
     for line in markdown_text.split('\n'):
         if line.startswith('*'):
+            if in_paragraph:
+                html_content += "</p>\n"
+                in_paragraph = False
             if not in_ordered_list:
                 if in_unordered_list:
                     html_content += "</ul>\n"
@@ -26,6 +30,9 @@ def convert_markdown_to_html(markdown_text):
                 in_ordered_list = True
             html_content += f"    <li>{line.strip('* ').strip()}</li>\n"
         elif line.startswith('-'):
+            if in_paragraph:
+                html_content += "</p>\n"
+                in_paragraph = False
             if not in_unordered_list:
                 if in_ordered_list:
                     html_content += "</ol>\n"
@@ -34,17 +41,21 @@ def convert_markdown_to_html(markdown_text):
                 in_unordered_list = True
             html_content += f"    <li>{line.strip('- ').strip()}</li>\n"
         else:
-            if in_ordered_list:
-                html_content += "</ol>\n"
-                in_ordered_list = False
-            if in_unordered_list:
-                html_content += "</ul>\n"
-                in_unordered_list = False
-            if line.startswith('#'):
-                heading_level = min(line.count('#'), 6)  # Limit heading level to h6
-                html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>\n"
+            if in_paragraph:
+                html_content += f"    {line}\n"
             else:
-                html_content += f"{line}\n"
+                if in_ordered_list:
+                    html_content += "</ol>\n"
+                    in_ordered_list = False
+                if in_unordered_list:
+                    html_content += "</ul>\n"
+                    in_unordered_list = False
+                html_content += "<p>\n"
+                html_content += f"    {line}\n"
+                in_paragraph = True
+
+    if in_paragraph:
+        html_content += "</p>\n"
 
     return html_content
 
