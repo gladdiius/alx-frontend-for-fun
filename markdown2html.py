@@ -14,24 +14,36 @@ def convert_markdown_to_html(markdown_text):
     """
     html_content = ""
     in_ordered_list = False
+    in_unordered_list = False
     for line in markdown_text.split('\n'):
         if line.startswith('*'):
             if not in_ordered_list:
+                if in_unordered_list:
+                    html_content += "</ul>\n"
+                    in_unordered_list = False
                 html_content += "<ol>\n"
                 in_ordered_list = True
             html_content += f"    <li>{line.strip('* ').strip()}</li>\n"
+        elif line.startswith('-'):
+            if not in_unordered_list:
+                if in_ordered_list:
+                    html_content += "</ol>\n"
+                    in_ordered_list = False
+                html_content += "<ul>\n"
+                in_unordered_list = True
+            html_content += f"    <li>{line.strip('- ').strip()}</li>\n"
         else:
             if in_ordered_list:
                 html_content += "</ol>\n"
                 in_ordered_list = False
+            if in_unordered_list:
+                html_content += "</ul>\n"
+                in_unordered_list = False
             if line.startswith('#'):
                 heading_level = min(line.count('#'), 6)  # Limit heading level to h6
                 html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>\n"
             else:
                 html_content += f"{line}\n"
-
-    if in_ordered_list:
-        html_content += "</ol>\n"
 
     return html_content
 
