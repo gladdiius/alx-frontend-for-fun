@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" markdown """
+"""markdown"""
 import sys
 
 
@@ -19,13 +19,13 @@ def convert_markdown_to_html(markdown_text):
             heading_level = min(line.count('#'), 6)  # Limit heading level to h6
             html_content += f"<h{heading_level}>{line.strip('# ').strip()}</h{heading_level}>\n"
         else:
-            html_content += f"<p>{line}</p>\n"
+            html_content += f"{line}\n"
 
     return html_content
 
 def main():
     if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
+        print("Usage: ./markdown2html.py <input_file.md> <output_file.html>", file=sys.stderr)
         sys.exit(1)
 
     input_file = sys.argv[1]
