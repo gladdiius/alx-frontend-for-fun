@@ -1,0 +1,25 @@
+a {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    color: hsl(0, 89%, 45%);
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background-color: hsl(0, 89%, 45%);
+    transform: scaleX(0);
+    transform-origin: left bottom;
+    transition: transform 0.25s ease-out;
+}
+
+a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left bottom;
+}
