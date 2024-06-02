@@ -1,11 +1,17 @@
-.info{
+%font{
     font-size: 12px;
 }
 
+.warning{
+    @extend %font;
+    color: #FF0000;
+}
+
 .success{
+    @extend %font;
     color: #00FF00;
 }
 
-.warning{
-    color: #FF0000;
+.info{
+    @extend %font;
 }
