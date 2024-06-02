@@ -1,0 +1,1 @@
+This folder contains all the solutions fof sass_scss project 
