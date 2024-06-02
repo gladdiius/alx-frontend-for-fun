@@ -1,26 +1,26 @@
 @for $h from 1 through 5 {
     @if $h == 1{
-        h#{$h}{
+        h1{
         font-size: 1px;
         }
     }
     @else if $h == 2{
-        h#{$h}{
+        h2{
         font-size: 2px;
         }
     }
     @else if $h == 3{
-        h#{$h}{
+        h3{
         font-size: 3px;
         }
     }
     @else if $h == 4{
-        h#{$h}{
+        h4{
         font-size: 4px;
         }
     }
     @else if $h == 5{
-        h#{$h}{
+        h5{
         font-size: 5px;
         }
     }
