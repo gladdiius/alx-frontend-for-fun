@@ -1,0 +1,13 @@
+/* Grid  */
+.row {
+  display: flex; /* Set display property to flex */
+}
+
+/* Entirely remove the row::after declaration */
+.row::after {
+  content: none; /* Remove the row::after pseudo-element */
+}
+/* Remove the float: left inside [class*='col-'] */
+[class*="col-"] {
+  float: none; /* Remove the float property */
+}
