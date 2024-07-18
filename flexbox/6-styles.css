@@ -55,5 +55,5 @@ ul.row {
 }
 
 .nav .nav-item + .nav-item {
-  margin: 10px;
+  margin-right: 10px;
 }
