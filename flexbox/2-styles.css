@@ -1,0 +1,19 @@
+/* Grid  */
+.row {
+  display: flex;
+}
+
+.row.no-after:after {
+  content: none;
+}
+
+[class*="col-"] {
+  clear: left;
+}
+
+/*** 4. CARD ***/
+/* Section Latest news ============================= */
+.section-latest-news .container .section-body .row {
+  display: flex;
+  flex-direction: row-reverse;
+}
