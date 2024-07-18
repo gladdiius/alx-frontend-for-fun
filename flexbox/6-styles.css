@@ -51,9 +51,9 @@ ul.row {
 }
 
 .nav .nav-item {
-  display: block;
+  color: black;
 }
 
 .nav .nav-item + .nav-item {
-  margin: 0;
+  margin: 1rem;
 }
