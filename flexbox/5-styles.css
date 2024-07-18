@@ -1,5 +1,13 @@
+/* variables */
 :root {
+  /* --header-logo-position: absolute; */
+  /* --header-logo-link-display: block; */
+  /* --header-logo-link-position: absolute; */
+  /* --header-logo-link-top: 10px; */
+  /* --header-logo-link-left: 20px; */
+  /* Other variables */
 }
+
 /* Grid  */
 .row {
   display: flex;
