@@ -29,7 +29,7 @@
 }
 
 [class*="col-"] {
-  padding: 0px;
+  padding: 0 !important;
   margin: 1rem;
 }
 
