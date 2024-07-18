@@ -13,7 +13,7 @@
 
 /* Section Latest news ============================= */
 /*** 4. CARD ***/
-.section-latest-news .container .section-body .row {
+.section-latest-news .row {
   display: flex;
   flex-direction: row-reverse;
 }
