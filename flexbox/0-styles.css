@@ -1,14 +1,12 @@
 /* Grid  */
 .row {
-  display: flex; /* Set display property to flex */
+  display: flex;
 }
 
-/* Entirely remove the row::after declaration */
 .row::after {
   content: none;
 }
 
-/* Remove the float: left inside [class*='col-'] */
 [class*="col-"] {
-  float: none; /* Remove the float property */
+  float: none !important;
 }
