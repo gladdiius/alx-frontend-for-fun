@@ -8,5 +8,5 @@
 }
 
 [class*="col-"] {
-  float: none !important;
+  clear: left;
 }
