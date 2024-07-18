@@ -29,9 +29,10 @@
 }
 
 [class*="col-"] {
-  padding: 0;
+  padding: 0px;
   margin: 1rem;
 }
+
 ul.row {
   margin: -1rem;
 }
